@@ -10,6 +10,20 @@ systems:
         RAM_SIZE: 1G
         VCPUS: 1
         HOSTNAME: zkclient
+
+    deploy:
+      openstack-client-system:
+        type: openstack
+        location: your_openstack_cloud_address_and_port
+        DISK_SIZE: 4G
+        OPENSTACK_USER: your_openstack_username
+        OPENSTACK_PASSWORD: your_openstack_password
+        OPENSTACK_TENANT: your_openstack_tennant
+        OPENSTACK_IMAGENAME: baserock_zookeeper_client
+        HOSTNAME: zkclient
+        CLOUD_INIT: yes
+        KERNEL_ARGS: console=ttyS0 console=tty0
+
   - morph: systems/zookeeper-server-x86_64.morph
     deploy:
       my-server-system:
@@ -19,3 +33,16 @@ systems:
         RAM_SIZE: 1G
         VCPUS: 1
         HOSTNAME: zkserver
+
+    deploy:
+      openstack-server-system:
+        type: openstack
+        location: your_openstack_cloud_address_and_port
+        DISK_SIZE: 4G
+        OPENSTACK_USER: your_openstack_username
+        OPENSTACK_PASSWORD: your_openstack_password
+        OPENSTACK_TENANT: your_openstack_tennant
+        OPENSTACK_IMAGENAME: baserock_zookeeper_server
+        HOSTNAME: zkserver
+        CLOUD_INIT: yes
+        KERNEL_ARGS: console=ttyS0 console=tty0
